@@ -24,7 +24,7 @@ type Clock struct {
 func New() *Clock {
 	clock := &Clock{}
 	clock.time = "00:00"
-	clock.hardwareSecondInMs = 920
+	clock.hardwareSecondInMs = 1000;
 
 	clock.pinA = machine.ADC1
 	clock.pinA.Configure(machine.PinConfig{Mode: machine.PinOutput})
@@ -60,6 +60,10 @@ func New() *Clock {
 	clock.D4.Configure(machine.PinConfig{Mode: machine.PinOutput})
 
 	return clock
+}
+
+func (c *Clock) SetHardwareSecondInMs(value int) {
+  c.hardwareSecondInMs = value;
 }
 
 func (c *Clock) SetTime(time string) {
