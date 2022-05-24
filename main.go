@@ -13,7 +13,7 @@ func main() {
 
 	clock := clock.New()
 	clock.SetTime("50:00")
-  clock.SetHardwareSecondInMs(640);
+	clock.SetHardwareSecondInMs(640)
 
 	isPomoRunning := false
 
@@ -42,13 +42,13 @@ func main() {
 		if !button.Get() {
 			if buttonDelayMs == 0 {
 				isPomoRunning = !isPomoRunning
-			}
-			if buttonDelayMs < 200 {
-				buttonDelayMs += 1
-			} else {
-				buttonDelayMs = 0
+				buttonDelayMs = 200
 			}
 		}
+
+    if buttonDelayMs > 0 {
+      buttonDelayMs -= 1
+    }
 
 		clock.ResetPins()
 		clock.DisplayDigit(seconds%10, 0)
